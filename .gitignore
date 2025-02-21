@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+experiments/
 
 # Spyder project settings
 .spyderproject
@@ -171,8 +172,8 @@ cython_debug/
 .pypirc
 
 # project files dataset/model/yaml/pdf etc wouldn't files
-111.mp4
-222.mp4
+#111.mp4
+#222.mp4
 
 # Not upload PDF Files
 *.pdf
@@ -193,9 +194,3 @@ yolo11x.pt
 *.jpeg
 *.jpg
 *.png
-
-
-
-# Not upload virtual Environment folder
-venv/
-experiments/
