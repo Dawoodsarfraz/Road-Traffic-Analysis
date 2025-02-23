@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/yolov11/yolo11l.pt" beforeDir="false" afterPath="$PROJECT_DIR$/models/Yolov11/yolo11l.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/yolov11/yolo11m.pt" beforeDir="false" afterPath="$PROJECT_DIR$/models/Yolov11/yolo11m.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/yolov11/yolo11n.pt" beforeDir="false" afterPath="$PROJECT_DIR$/models/Yolov11/yolo11n.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/yolov11/yolo11s.pt" beforeDir="false" afterPath="$PROJECT_DIR$/models/Yolov11/yolo11s.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model_loader.py" afterDir="false" />
-    </list>
+    <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +137,7 @@
       <option name="presentableId" value="Default" />
       <updated>1740024297925</updated>
       <workItem from="1740266012478" duration="236000" />
-      <workItem from="1740266431909" duration="3001000" />
+      <workItem from="1740266431909" duration="3386000" />
     </task>
     <servers />
   </component>
