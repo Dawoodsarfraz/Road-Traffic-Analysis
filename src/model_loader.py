@@ -73,7 +73,7 @@ def load_model():
     parent_directory = os.path.dirname(current_script_path)
     project_root = os.path.dirname(parent_directory)
 
-    model_folder = "models/original models/yolov11"  # Adjusted for relative path usage
+    model_folder = "models/Yolov11"  # Adjusted for relative path usage
     model_folder_path = os.path.join(project_root, model_folder)
 
     if not os.path.exists(model_folder_path):     # Check if the model folder exists
