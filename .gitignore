@@ -183,6 +183,8 @@ yolov5x.pt
 yolov6m.pt
 yolov8x.pt
 yolo11x.pt
+yolov12x.pt
+
 
 # Not upload configuration files
 *.yaml

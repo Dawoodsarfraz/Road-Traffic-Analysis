@@ -1,8 +1,6 @@
 import cv2
 from src.media_file_loader import get_media_file_path_and_type
 from src.model_loader import load_model
-from utils.save_results import SaveResults
-# from utils.save_results import SaveResults
 
 class ObjectDetection:
     def __init__(self, model, media_path, media_type, objects_name_list=None):
@@ -16,11 +14,9 @@ class ObjectDetection:
         self.model = model
         self.classes_names = self.model.names
         self.media_path = media_path
-        self.media_type = media_type
-        self.objects_name_list = objects_name_list or []  # Detect all objects if no list is provided
-        self.save_results = SaveResults()  # Initialize results manager
-        
-        # Open the media (video or image)
+        self.objects_name_list = objects_name_list or []  # expected objects # Detect all objects if no list is provided
+
+        # Open the media (video or image) # remove media types just object detection in class
         if self.media_type == 'video':
             self.cap = cv2.VideoCapture(media_path)
             if not self.cap.isOpened():
@@ -52,8 +48,8 @@ class ObjectDetection:
         :param frame_idx: Frame index to name the output file (for videos).
         :return: Processed frame with bounding boxes.
         """
-        object_indices = self.get_object_indices()
-        if not object_indices:
+        object_indices = self.get_object_indices() # class ID's not indices
+        if not object_indices: # make if condiction easy
             results = self.model.track(frame, imgsz = 640, verbose=True, persist=True) # track IDs 
             # results = self.model(frame, verbose=False)  # Detect all objects
         else:
@@ -71,6 +67,7 @@ class ObjectDetection:
                 confidence = confidence_scores[i].item()
 
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                # make new function so we can use results to others
                 label = f"{self.classes_names[class_idx]}: {confidence:.2f}"
                 cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
@@ -89,6 +86,7 @@ class ObjectDetection:
                 if not ret:
                     break
 
+                # remove this and change name
                 # Process and save the frame with detections
                 processed_frame = self.process_frame(frame, frame_idx)
                 cv2.imshow("Object Detection", processed_frame)
@@ -118,18 +116,21 @@ def object_detection():
     model = load_model()
     media_path, media_type = get_media_file_path_and_type()  # Now returns path and type (image or video)
 
-    # Get object names from the user
-    objects_name = []
-    # while True:
-    #     available_classes = list(ObjectDetection(model, media_path, media_type, []).classes_names.values())
-    #     print(f"Available classes to detect: {', '.join(available_classes)}")
 
-    #     object_name = input("Enter Name of Object You Want to Detect (or type 'quit' to exit, or leave empty for all objects): ").lower()
-    #     if object_name == "quit":
-    #         break
-    #     elif object_name == "":
-    #         break
-    #     objects_name.append(object_name)
+
+    # Get object names from the user
+    # remove this function and
+    objects_name = []
+    while True:
+        available_classes = list(ObjectDetection(model, media_path, media_type, []).classes_names.values())
+        print(f"Available classes to detect: {', '.join(available_classes)}")
+
+        object_name = input("Enter Name of Object You Want to Detect (or type 'quit' to exit, or leave empty for all objects): ").lower()
+        if object_name == "quit":
+            break
+        elif object_name == "":
+            break
+        objects_name.append(object_name)
 
     # Initialize the ObjectDetection class with the requested objects
     detection_obj = ObjectDetection(model, media_path, media_type, objects_name)
