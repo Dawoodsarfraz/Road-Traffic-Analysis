@@ -11,16 +11,22 @@ class ObjectDetection:
         self.target_class_ids = self.get_target_class_ids(target_object_classes)  # Get target class IDs
 
     def get_target_class_ids(self, target_object_classes):
-        """Find class IDs for the given target class names."""
+        """
+        Find class IDs for the given target class names.
+        """
         return [class_id for class_id, class_name in self.class_labels.items() if class_name in target_object_classes]
 
     def process_frame(self, frame):
-        """Perform object detection on a frame."""
+        """
+        Perform object detection on a frame.
+        """
         detection_results = self.model(frame, verbose=False)
         return detection_results
 
     def annotate_frame(self, frame, detection_results):
-        """Draw bounding boxes only for the target objects."""
+        """
+        Draw bounding boxes only for the target objects.
+        """
         if detection_results[0].boxes.data is not None:
             bounding_boxes = detection_results[0].boxes.xyxy.cpu()
             detected_class_ids = detection_results[0].boxes.cls.int().cpu().tolist()
