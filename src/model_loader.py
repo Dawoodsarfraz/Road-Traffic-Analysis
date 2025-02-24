@@ -13,7 +13,4 @@ class LoadModel:
         except Exception as e:
             raise ValueError(f"Failed to load model: {str(e)}")
 
-# model_path = "../utils/Models/Yolov12/weights/yolov12n.pt"
-
-
 
