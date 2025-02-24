@@ -1,12 +1,12 @@
 import cv2
 from src.model_loader import LoadModel
-from src.media_file_loader import LoadMediaFile
+# from src.media_file_loader import LoadMediaFile
 
 
 class ObjectDetection:
     def __init__(self, target_object_classes, model_file_path, media_file_path):
         self.model = LoadModel(model_file_path).load_yolo_model()  # Load model with given path
-        self.media_source = LoadMediaFile.get_media_path(media_file_path)  # Get media path
+        self.media_source = media_file_path  # Get media path
         self.class_labels = self.model.names  # Get class names from model
         self.target_class_ids = self.get_target_class_ids(target_object_classes)  # Get target class IDs
 
