@@ -4,63 +4,76 @@ from src.media_file_loader import LoadMediaFile
 
 
 class ObjectDetection:
-    def __init__(self, target_classes, model_path, media_path):
-        self.model = LoadModel(model_path).load_yolo_model()  # Pass model path
+    def __init__(self, target_object_classes, model_file_path, media_file_path):
+        self.model = LoadModel(model_file_path).load_yolo_model()  # Load model with given path
 
-        # Create an instance of LoadMediaFile and call get_media_path()
-        file_loader = LoadMediaFile(media_path)
-        self.media_file = file_loader.get_media_path()  # Correct way
+        # Load media file path
+        media_loader = LoadMediaFile(media_file_path)
+        self.media_source = media_loader.get_media_path()
 
-        self.class_names = self.model.names  # Get class names from model
-        self.target_class_ids = self.get_target_class_ids(target_classes)  # Get class IDs of target objects
+        self.class_labels = self.model.names  # Get class names from model
+        self.target_class_ids = self.get_target_class_ids(target_object_classes)  # Get target class IDs
 
-    def get_target_class_ids(self, target_classes):
+    def get_target_class_ids(self, target_object_classes):
         """Find class IDs for the given target class names."""
-        return [idx for idx, name in self.class_names.items() if name in target_classes]
+        return [class_id for class_id, class_name in self.class_labels.items() if class_name in target_object_classes]
 
-    def frame_process(self, frame):
-        """Perform object detection."""
-        results = self.model(frame, verbose=False)
-        return results
+    def process_frame(self, frame):
+        """Perform object detection on a frame."""
+        detection_results = self.model(frame, verbose=False)
+        return detection_results
 
-    def draw_boxes(self, frame, results):
+    def annotate_frame(self, frame, detection_results):
         """Draw bounding boxes only for the target objects."""
-        if results[0].boxes.data is not None:
-            boxes = results[0].boxes.xyxy.cpu()
-            class_ids = results[0].boxes.cls.int().cpu().tolist()
-            confidence_scores = results[0].boxes.conf.cpu().tolist()
+        if detection_results[0].boxes.data is not None:
+            bounding_boxes = detection_results[0].boxes.xyxy.cpu()
+            detected_class_ids = detection_results[0].boxes.cls.int().cpu().tolist()
+            confidence_scores = detection_results[0].boxes.conf.cpu().tolist()
 
-            for index, box in enumerate(boxes):
-                class_id = class_ids[index]
+            for index, bounding_box in enumerate(bounding_boxes):
+                detected_class_id = detected_class_ids[index]
 
-                if class_id in self.target_class_ids:  # Filter detections by target class IDs
-                    x1, y1, x2, y2 = map(int, box.int().tolist())
+                if detected_class_id in self.target_class_ids:  # Filter detections by target class IDs
+                    x1, y1, x2, y2 = map(int, bounding_box.int().tolist())
                     confidence_score = confidence_scores[index]
 
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    label = f"{self.class_names[class_id]}: {confidence_score:.2f}"
+                    label = f"{self.class_labels[detected_class_id]}: {confidence_score:.2f}"
                     cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         return frame
 
     def object_detection(self):
-        """Reads video frames, processes them, and displays the output."""
-        cap = cv2.VideoCapture(self.media_file)
-        if not cap.isOpened():
-            print(f"Error: Could not open {self.media_file}")
-            return
+        """Process media file (image or video) and display results."""
+        if self.media_source.lower().endswith(('png', 'jpg', 'jpeg', 'bmp')):
+            frame = cv2.imread(self.media_source)
+            if frame is None:
+                print(f"Error: Could not open {self.media_source}")
+                return
 
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
+            detection_results = self.process_frame(frame)  # Perform detection
+            annotated_frame = self.annotate_frame(frame, detection_results)  # Draw bounding boxes
 
-            processed_frame = self.frame_process(frame)  # Use frame_process() for detection + visualization
-            processed_frame = self.draw_boxes(frame, processed_frame)  # Process and draw
+            cv2.imshow("Object Detection", annotated_frame)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+        else:
+            video_capture = cv2.VideoCapture(self.media_source)
+            if not video_capture.isOpened():
+                print(f"Error: Could not open {self.media_source}")
+                return
 
-            cv2.imshow("Object Detection", processed_frame)
+            while video_capture.isOpened():
+                frame_available, frame = video_capture.read()
+                if not frame_available:
+                    break
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+                detection_results = self.process_frame(frame)  # Perform detection
+                annotated_frame = self.annotate_frame(frame, detection_results)  # Draw bounding boxes
 
-        cap.release()
-        cv2.destroyAllWindows()
+                cv2.imshow("Object Detection", annotated_frame)
+
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+
+            video_capture.release()
+            cv2.destroyAllWindows()
