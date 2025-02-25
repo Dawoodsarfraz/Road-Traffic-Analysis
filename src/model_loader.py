@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-class LoadModel:
+class LoadModel:# class and file same name
     def __init__(self, model_path):
         self.model_path = model_path
         self.model = None
@@ -13,4 +13,4 @@ class LoadModel:
         except Exception as e:
             raise ValueError(f"Failed to load model: {str(e)}")
 
-
+# can be just a function

@@ -7,6 +7,7 @@
     <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/object_detection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
