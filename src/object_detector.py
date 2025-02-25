@@ -1,60 +1,67 @@
 import  cv2
+import torch
 from  src.model_loader import ModelLoader
-from utils.utils import get_target_class_ids
-
+from utils.utils import class_ids_from_names
 
 class ObjectDetector:
-    def __init__(self, model_file_path, conf_threshold, target_object_classes, media_source_path=None):
+    def __init__(self, model_path, conf_threshold, desired_objects):
         """
         Initialize the Object Detector.
         """
-        self.model, self.class_labels = ModelLoader(model_file_path).load_yolo_model() # return model and class labels
-        self.conf_threshold = conf_threshold  # Confidence threshold for filtering detections
-        self.target_class_ids = get_target_class_ids(self.class_labels, target_object_classes)  # Filter specific class IDs
-        self.media_source = media_source_path  # Optional: Set media source path
+        self.model, self.class_labels, self.device = ModelLoader(model_path).load_yolo_model() # Get model, labels, and device
+        self.conf_threshold = conf_threshold # Confidence threshold for filtering detections
+        self.expected_class_ids = class_ids_from_names(self.class_labels, desired_objects) # Filter specific class IDs
 
     def process_frame(self, frame):
         """
         Perform object detection on a single frame.
-        Returns filtered detection results.
+        Optimized for both GPU and CPU execution.
         """
-        detection_results = self.model(frame, verbose=False)
+        # Move frame to the correct device (if it's a tensor)
+        if isinstance(frame, torch.Tensor):
+            frame = frame.to(self.device)
 
-        filtered_detections = []
+        # Perform inference
+        detection_results = self.model(frame, verbose=True)
+
+        detected_objects = []
         if detection_results[0].boxes.data is not None:
-            bounding_boxes = detection_results[0].boxes.xyxy.cpu()
-            detected_class_ids = detection_results[0].boxes.cls.int().cpu().tolist()
-            confidence_scores = detection_results[0].boxes.conf.cpu().tolist()
+            # Keep bounding boxes, class IDs, and confidence scores on the same device
+            bounding_boxes = detection_results[0].boxes.xyxy.to(self.device)
+            detected_class_ids = detection_results[0].boxes.cls.int().to(self.device).tolist()
+            confidence_scores = detection_results[0].boxes.conf.to(self.device).tolist()
 
             for index, bounding_box in enumerate(bounding_boxes):
                 detected_class_id = detected_class_ids[index]
                 confidence_score = confidence_scores[index]
 
-                if detected_class_id in self.target_class_ids and confidence_score >= self.conf_threshold:
-                    filtered_detections.append({
+                if detected_class_id in self.expected_class_ids and confidence_score >= self.conf_threshold:
+                    detected_objects.append({
                         "class_id": detected_class_id,
-                        "bbox": bounding_box.tolist(),
+                        "class_label": self.class_labels[detected_class_id],  # Add class label
+                        "bounding_box": bounding_box.tolist(),  # Move to CPU when needed
                         "confidence": confidence_score
                     })
-        return filtered_detections
 
-    def process_image(self):
+        return detected_objects
+
+    def process_image(self, input_source):
         """
         Process a single image and return detection results.
         """
-        frame = cv2.imread(self.media_source)
+        frame = cv2.imread(input_source)
         if frame is None:
-            raise ValueError(f"Error: Could not open {self.media_source}")
+            raise ValueError(f"Error: Could not open {input_source}")
 
         return self.process_frame(frame)
 
-    def process_video(self):
+    def process_video(self, input_source):
         """
         Process a video and return detection results for each frame.
         """
-        video_capture = cv2.VideoCapture(self.media_source)
+        video_capture = cv2.VideoCapture(input_source)
         if not video_capture.isOpened():
-            raise ValueError(f"Error: Could not open {self.media_source}")
+            raise ValueError(f"Error: Could not open {input_source}")
 
         results = []
         while video_capture.isOpened():
