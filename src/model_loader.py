@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-class LoadModel:# class and file same name
+class ModelLoader:# class and file should have same name
     def __init__(self, model_path):
         self.model_path = model_path
         self.model = None

@@ -9,7 +9,7 @@ class ObjectDetection: # Object Detector
         self.class_labels = self.model.names  # Get class names from model
         self.target_class_ids = self.get_target_class_ids(target_object_classes)  # Get target class IDs
         self.conf_threshold = conf_threshold
-# make according
+# make according to imp order
 
     def get_target_class_ids(self, target_object_classes): # expected classes ids
         """
