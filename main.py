@@ -4,7 +4,7 @@ def main():
     print("Starting Object Detection...")
 
     # Define the model path and media file path
-    model_path = "./utils/Models/Yolov12/weights/yolov12n.pt"  # Ensure the path is correct
+    model_path = "Models/Yolov12/weights/yolov12n.pt"  # Ensure the path is correct
     media_source_path = "./media/videos/222.mp4"
 
     # Initialize Object Detection with model and media path
