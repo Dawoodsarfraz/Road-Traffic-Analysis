@@ -12,10 +12,8 @@ class ObjectTracker:
         self.model, self.class_labels= ModelLoader(model_path).load_yolo_model()
         self.conf_threshold = conf_threshold
         self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_to_track)
-        print(self.expected_class_ids)
         self.device = device
-        # Initialize ByteTrack with tracking parameters
-        # self.tracker = BYTETracker(track_thresh=0.5, match_thresh=0.8)
+        # self.tracker = BYTETracker(track_thresh=0.5, match_thresh=0.8) # Initialize ByteTrack with tracking parameters
 
 
     def process_frame(self, frame):
