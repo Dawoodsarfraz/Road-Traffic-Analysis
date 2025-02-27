@@ -21,7 +21,7 @@ def annotate_frame(frame, tracked_objects):
     return frame
 
 
-def class_ids_from_names(class_labels, objects_to_track=None):
+def get_class_ids_from_names(class_labels, objects_to_track=None):
     """
     Returns class IDs for the given target class names.
     If target_object_classes is None, it returns all available class IDs.
