@@ -5,17 +5,13 @@ from ObjectDetector.utils import annotate_frame
 
 def main():
     print("Starting Object Detection...")
-
     model_path = "Models/Yolov8/weights/yolov8n.pt"
     input_media_source = "./media/videos/222.mp4"
-    # media_source = "./media/images/image.png" # media_path
+    # input_media_source = "./media/images/image.png" # media_path
+    objects_to_detect = ["car", "bus", "person", "wall", "moon", "sun", "kite"]
+    CONF_THRESHOLD = 0.5
 
-    # objects_to_detect = None  # Track all objects
-    # objects_to_detect = [] # Track all objects
-    objects_to_detect = None # ["car", "bus", "person", "wall", "moon", "sun", "kite"]
-    conf_threshold = 0.5
-
-    detector = ObjectDetector(model_path, conf_threshold, objects_to_detect)
+    detector = ObjectDetector(model_path, CONF_THRESHOLD, objects_to_detect)
 
     if input_media_source.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff')):
         frame = cv2.imread(input_media_source)

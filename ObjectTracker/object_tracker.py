@@ -4,7 +4,6 @@ from ObjectTracker.model_loader import ModelLoader
 from ObjectTracker.utils import class_ids_from_names
 # from trackers.byte_tracker import BYTETracker  # Use YOLO's built-in ByteTrack
 
-
 class ObjectTracker:
     def __init__(self, model_path, conf_threshold, objects_to_track):
         """
@@ -23,9 +22,7 @@ class ObjectTracker:
         """
         if isinstance(frame, torch.Tensor):
             frame = frame.to(self.device)
-
-        # Use YOLO's built-in ByteTrack tracking
-        detection_results = self.model.track(frame, tracker="bytetrack.yaml", verbose=True)
+        detection_results = self.model.track(frame, tracker="bytetrack.yaml", verbose=True) # YOLO's built-in ByteTrack tracking
 
         tracked_objects = []
         if detection_results and detection_results[0].boxes:  # Ensure boxes exist
@@ -43,8 +40,6 @@ class ObjectTracker:
             else:
                 track_ids = track_ids.int().to(self.device).tolist()
 
-
-
             for index, bbox in enumerate(bounding_boxes):
                 class_id = detected_class_ids[index]
                 track_id = track_ids[index]
@@ -56,7 +51,6 @@ class ObjectTracker:
                         "class_label": self.class_labels[class_id],
                         "bounding_box": bbox.tolist()
                     })
-
         return tracked_objects
 
     def process_image(self, input_media_source):
@@ -66,7 +60,6 @@ class ObjectTracker:
         frame = cv2.imread(input_media_source)
         if frame is None:
             raise ValueError(f"Error: Could not open {input_media_source}")
-
         return self.process_frame(frame)
 
     def process_video(self, input_media_source):
@@ -84,5 +77,4 @@ class ObjectTracker:
 
             detected_objects = self.process_frame(frame)
             yield frame, detected_objects  # Yield each frame with tracking results
-
         video_capture.release()
