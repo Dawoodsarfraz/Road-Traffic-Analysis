@@ -13,7 +13,7 @@ class ObjectTracker:
         self.model, self.class_labels, self.device = ModelLoader(model_path).load_yolo_model()
         self.conf_threshold = conf_threshold
         self.expected_class_ids = class_ids_from_names(self.class_labels, objects_to_track)
-
+        print(self.expected_class_ids)
         # Initialize ByteTrack with tracking parameters
         # self.tracker = BYTETracker(track_thresh=0.5, match_thresh=0.8)
 
@@ -33,15 +33,17 @@ class ObjectTracker:
             detected_class_ids = detection_results[0].boxes.cls
             track_ids = detection_results[0].boxes.id
 
-            if detected_class_ids is not None:
-                detected_class_ids = detected_class_ids.int().to(self.device).tolist()
-            else:
+            if detected_class_ids is None:
                 detected_class_ids = []
-
-            if track_ids is not None:
-                track_ids = track_ids.int().to(self.device).tolist()
             else:
+                detected_class_ids = detected_class_ids.int().to(self.device).tolist()
+
+            if track_ids is None:
                 track_ids = [-1] * len(detected_class_ids)  # Assign -1 for missing track IDs
+            else:
+                track_ids = track_ids.int().to(self.device).tolist()
+
+
 
             for index, bbox in enumerate(bounding_boxes):
                 class_id = detected_class_ids[index]

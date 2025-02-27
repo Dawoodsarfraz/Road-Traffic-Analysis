@@ -1,18 +1,18 @@
 import cv2
-from experiment.object_detector import ObjectDetector
-from experiment.utils import annotate_frame
+from ObjectDetector.object_detector import ObjectDetector
+from ObjectDetector.utils import annotate_frame
 
 
 def main():
     print("Starting Object Detection...")
 
-    model_path = "Models/Yolov12/weights/yolov12n.pt"
+    model_path = "Models/Yolov8/weights/yolov8n.pt"
     input_media_source = "./media/videos/222.mp4"
     # media_source = "./media/images/image.png" # media_path
 
     # objects_to_detect = None  # Track all objects
     # objects_to_detect = [] # Track all objects
-    objects_to_detect = ["car", "bus", "person"]
+    objects_to_detect = None # ["car", "bus", "person", "wall", "moon", "sun", "kite"]
     conf_threshold = 0.5
 
     detector = ObjectDetector(model_path, conf_threshold, objects_to_detect)
