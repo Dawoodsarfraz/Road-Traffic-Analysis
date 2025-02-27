@@ -4,6 +4,7 @@ from ObjectTracker.model_loader import ModelLoader
 from ObjectTracker.utils import class_ids_from_names
 # from trackers.byte_tracker import BYTETracker  # Use YOLO's built-in ByteTrack
 
+
 class ObjectTracker:
     def __init__(self, model_path, conf_threshold, objects_to_track):
         """
@@ -12,9 +13,8 @@ class ObjectTracker:
         self.model, self.class_labels, self.device = ModelLoader(model_path).load_yolo_model()
         self.conf_threshold = conf_threshold
         self.expected_class_ids = class_ids_from_names(self.class_labels, objects_to_track)
-        print(self.expected_class_ids)
-        # Initialize ByteTrack with tracking parameters
-        # self.tracker = BYTETracker(track_thresh=0.5, match_thresh=0.8)
+        # self.tracker = BYTETracker(track_thresh=0.5, match_thresh=0.8) # Initialize ByteTrack with tracking parameters
+
 
     def process_frame(self, frame):
         """
@@ -53,6 +53,7 @@ class ObjectTracker:
                     })
         return tracked_objects
 
+
     def process_image(self, input_media_source):
         """
         Process a single image for object tracking.
@@ -61,6 +62,7 @@ class ObjectTracker:
         if frame is None:
             raise ValueError(f"Error: Could not open {input_media_source}")
         return self.process_frame(frame)
+
 
     def process_video(self, input_media_source):
         """

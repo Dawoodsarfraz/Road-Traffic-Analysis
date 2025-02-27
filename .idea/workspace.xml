@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/ObjectTracker/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTracker/object_tracker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ObjectTracker/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTracker/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/object_detector_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/object_detector_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracker_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/object_tracker_main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

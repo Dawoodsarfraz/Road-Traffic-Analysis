@@ -1,5 +1,6 @@
 import cv2
 
+
 def annotate_frame(frame, tracked_objects):
     """
     Draws bounding boxes, labels, and track IDs on the frame for tracked objects.
@@ -28,4 +29,3 @@ def class_ids_from_names(class_labels, objects_to_track=None):
     if not objects_to_track or len(objects_to_track)==0:  # Detect all classes if no specific target is given
         return list(class_labels.keys())
     return [class_id for class_id, class_name in class_labels.items() if class_name in objects_to_track]
-

@@ -6,11 +6,11 @@ def main():
     print("Starting Object Tracking...")
 
     model_path = "Models/Yolov12/weights/yolov12x.pt"
-    input_media_source = "./media/videos/222.mp4"
-    # input_media_source = "./media/images/image.png"  # For image tracking
+    # input_media_source = "./media/videos/222.mp4"
+    input_media_source = "./media/images/image.png"  # For image tracking
 
     # Specify objects to track (None = track all objects)
-    objects_to_track = ["car", "bus", "person"]
+    objects_to_track = ["wall"]
     conf_threshold = 0.5
 
     tracker = ObjectTracker(model_path, conf_threshold, objects_to_track)
