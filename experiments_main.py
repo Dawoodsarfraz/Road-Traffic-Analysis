@@ -6,7 +6,7 @@ from experiment.utils import annotate_frame
 def main():
     print("Starting Object Detection...")
 
-    model_path = "Models/Yolov12/weights/yolov12x.pt"
+    model_path = "Models/Yolov12/weights/yolov12n.pt"
     input_media_source = "./media/videos/222.mp4"
     # media_source = "./media/images/image.png" # media_path
 
