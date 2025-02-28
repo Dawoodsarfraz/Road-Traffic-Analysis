@@ -1,5 +1,4 @@
 import cv2
-from torch.xpu import device
 
 from ObjectTracker.object_tracker import ObjectTracker  # Updated to use ObjectTracker
 from ObjectTracker.utils import annotate_frame
@@ -13,7 +12,7 @@ def main():
 
     # Specify objects to track (None = track all objects)
     objects_to_track = ["car", "bus", "person"]
-    conf_threshold = 0.5
+    conf_threshold = 0.7
     device = "cpu"
     tracker = ObjectTracker(model_path, conf_threshold, objects_to_track, device)
 
@@ -38,7 +37,7 @@ def main():
             cv2.imshow("Object Tracking", annotated_frame)
 
             # Press 'q' to exit
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q' or "Q"):
                 break
 
         cv2.destroyAllWindows()
