@@ -3,9 +3,6 @@ from ultralytics import YOLO
 
 
 class ModelLoader:
-    """
-    Loads the YOLO model and assigns it to the specified device (CPU/GPU).
-    """
     def __init__(self, model_path, device="cpu"):
         """
         Initializes the ModelLoader.
@@ -17,6 +14,7 @@ class ModelLoader:
         self.model_path = model_path
         self.model = None
         self.device = device if device else ("cuda" if torch.cuda.is_available() else "cpu")
+        self.class_labels = None
 
     def load_yolo_model(self):
         """
