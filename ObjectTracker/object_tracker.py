@@ -4,16 +4,17 @@ from ObjectTracker.utils import get_class_ids_from_names
 
 
 class ObjectTracker:
-    def __init__(self, model_path, conf_threshold, objects_to_track, device="cuda"):
+    def __init__(self, model_path, conf_threshold=0.5, objects_to_track=None):
         """
         Initialize the Object Tracker with YOLO and ByteTrack.
         """
         self.model, self.class_labels = ModelLoader(model_path).load_yolo_model()
         self.conf_threshold = conf_threshold
         self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_to_track)
-        self.device = device
-        self.object_tracker = {}
-        self.tracked_ids = {}  # Dictionary to track assigned IDs
+        self.device = "cpu" if input("For CPU enter y/Y").strip().lower() == "y" else "cuda"
+        self.object_tracker = {} # Dictionary to store tracked objects
+        self.tracked_ids = set()  # Set to track assigned IDs
+
 
     def process_frame(self, frame):
         """
@@ -22,7 +23,6 @@ class ObjectTracker:
         """
         # Use YOLO's built-in ByteTrack tracking
         detection_results = self.model.track(frame, tracker="bytetrack.yaml", verbose=True)
-
         tracked_objects = []
         if detection_results and detection_results[0].boxes:
             conf_scores = detection_results[0].boxes.conf.to(self.device)
@@ -36,10 +36,8 @@ class ObjectTracker:
             for index, bbox in enumerate(bounding_boxes):
                 class_id = int(detected_class_ids[index])
                 track_id = int(track_ids[index])
-
-                # Accessing bounding box values [x_min, y_min, x_max, y_max]
                 center_of_x_axis, center_of_y_axis = (bbox[0] + bbox[2]) // 2, (bbox[1] + bbox[3]) // 2  # Object center
-                min_distance = float("inf")
+                min_distance = float("inf") # assign Infinity
                 matched_id = track_id
 
                 # Check if object was previously detected in previous frame
@@ -52,8 +50,7 @@ class ObjectTracker:
                 # Update tracking dictionary
                 self.object_tracker[matched_id] = (center_of_x_axis, center_of_y_axis)
                 track_id = matched_id  # Assign consistent ID
-
-                self.tracked_ids[track_id] = True  # Store assigned ID
+                self.tracked_ids.add(track_id)  # Store track ID in a set
 
                 if class_id in self.expected_class_ids:
                     tracked_objects.append({
@@ -62,8 +59,8 @@ class ObjectTracker:
                         "class_label": self.class_labels[class_id],
                         "bounding_box": bbox
                     })
-
         return tracked_objects
+
 
     def process_image(self, input_media_source):
         """
@@ -73,6 +70,7 @@ class ObjectTracker:
         if frame is None:
             raise ValueError(f"Error: Could not open {input_media_source}")
         return self.process_frame(frame)
+
 
     def process_video(self, input_media_source):
         """
@@ -86,8 +84,6 @@ class ObjectTracker:
             frame_available, frame = video_capture.read()
             if not frame_available:
                 break
-
             tracked_objects = self.process_frame(frame)
             yield frame, tracked_objects  # Yield each frame with tracking results
-
         video_capture.release()
