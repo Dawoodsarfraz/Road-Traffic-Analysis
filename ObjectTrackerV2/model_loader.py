@@ -25,10 +25,9 @@ class ModelLoader:
         :return: Tuple having (model, class_labels, device)
         """
         try:
-            self.model = YOLO(self.model_path).to(self.device)  # Move model to device
+            self.model = YOLO(self.model_path)  # .to(self.device) Move model to device
             self.model.eval()  # Set model to evaluation mode
             self.class_labels = self.model.names  # Get class labels from model
             return self.model, self.class_labels
         except Exception as e:
             raise ValueError(f"Failed to load model: {str(e)}")
-

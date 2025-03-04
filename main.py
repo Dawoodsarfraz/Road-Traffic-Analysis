@@ -1,6 +1,6 @@
 import cv2
-from ObjectTracker.object_tracker import ObjectTracker  # Updated to use ObjectTracker
-from ObjectTracker.utils import annotate_frame
+from ObjectTrackerV2.object_tracker import ObjectTracker  # Updated to use ObjectTracker
+from ObjectTrackerV2.utils import annotate_frame
 
 
 def main():
@@ -12,7 +12,9 @@ def main():
     # Specify objects to track (None = track all objects)
     objects_to_track = ["car", "bus", "person"]
     conf_threshold = 0.75
-    tracker = ObjectTracker(model_path, conf_threshold, objects_to_track)
+    use_gpu = False
+    tracker = ObjectTracker(model_path, conf_threshold, objects_to_track, use_gpu)
+    # tracker = ObjectTracker(model_path, conf_threshold, objects_to_track)
 
     # Process video (passing file path directly)
     for frame, tracked_objects in tracker.process_video(input_media_source):
@@ -22,7 +24,6 @@ def main():
         # Press 'q' to exit
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":

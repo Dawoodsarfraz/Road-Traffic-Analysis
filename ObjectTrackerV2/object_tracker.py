@@ -1,31 +1,27 @@
 import cv2
-from ObjectTracker.model_loader import ModelLoader
-from ObjectTracker.utils import get_class_ids_from_names
+from ObjectTrackerV2.model_loader import ModelLoader
+from ObjectTrackerV2.utils import get_class_ids_from_names
+from ObjectTrackerV2.object_data import ObjectData
 
 
 class ObjectTracker:
-    def __init__(self, model_path, conf_threshold=0.5, objects_to_track=None, use_gpu=None):
+    def __init__(self, model_path, conf_threshold=0.5, objects_to_track=None, use_gpu=False):
         """
-        Initialize the Object Tracker with YOLO and ByteTrack.
+        Initialize the Object Tracker .
         """
-        self.model, self.class_labels = ModelLoader(model_path).load_yolo_model()
+        self.model, self.class_labels = ModelLoader(model_path, use_gpu).load_yolo_model()
         self.conf_threshold = conf_threshold
         self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_to_track)
-        self.device = "cuda" if use_gpu == True else "cpu" # use Tru Falsa no input
+        self.device = "cuda" if use_gpu else "cpu"
 
-
-    def process_frame(self, frame):
+    def process_tracked_objects(self, detection_results):
         """
-        Perform object detection & tracking using YOLO’s built-in tracker while ensuring
-        consistent object IDs across frames.
+        Process detection results and return a list of tracked objects.
         """
-        # Use YOLO's built-in ByteTrack tracking
-        detection_results = self.model.track(frame, persist=True, tracker="bytetrack.yaml", verbose=True)
-
         tracked_objects = []
         if detection_results and detection_results[0].boxes:
             conf_scores = detection_results[0].boxes.conf.to(self.device)
-            valid_indices = conf_scores > self.conf_threshold  # picking those greater than confidence threshold
+            valid_indices = conf_scores > self.conf_threshold  # Filter confidence scores
             bounding_boxes = detection_results[0].boxes.xyxy[valid_indices].to(self.device).tolist()
             detected_class_ids = detection_results[0].boxes.cls[valid_indices].to(self.device).tolist()
             track_ids = detection_results[0].boxes.id[valid_indices]
@@ -37,18 +33,32 @@ class ObjectTracker:
                 class_id = int(detected_class_ids[index])
                 track_id = int(track_ids[index])
 
-                # Ensure only valid tracked objects are processed
+                # Skip untracked objects
                 if track_id == -1:
-                    continue  # Skipping untracked objects that have -1 Tracking ID
+                    continue
 
-                if class_id in self.expected_class_ids: # create class for this and try frames having just entered objects not everything
-                    tracked_objects.append({
-                        "track_id": track_id,
-                        "class_id": class_id,
-                        "class_label": self.class_labels[class_id],
-                        "bounding_box": bbox
-                    })
+                    # Only process expected class IDs
+                if class_id in self.expected_class_ids:
+                    tracked_objects.append(ObjectData(
+                        track_id=track_id,
+                        class_id=class_id,
+                        class_label=self.class_labels[class_id],
+                        bounding_box=bbox
+                    ))
+
         return tracked_objects
+
+
+    def process_frame(self, frame):
+
+        detection_results = self.model.track(frame,
+                                             persist=True,
+                                             tracker="bytetrack.yaml",
+                                             verbose=True,
+                                             classes=self.expected_class_ids
+                                             )
+
+        return self.process_tracked_objects(detection_results)
 
 
     def process_video(self, input_media_source):
