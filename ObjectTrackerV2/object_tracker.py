@@ -38,14 +38,13 @@ class ObjectTracker:
                     continue
 
                     # Only process expected class IDs
-                if class_id in self.expected_class_ids:
+                if class_id in self.expected_class_ids: # can be remove but if model.track
                     tracked_objects.append(ObjectData(
                         track_id=track_id,
                         class_id=class_id,
                         class_label=self.class_labels[class_id],
                         bounding_box=bbox
                     ))
-
         return tracked_objects
 
 
