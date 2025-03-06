@@ -1,20 +1,21 @@
 import cv2
-from ObjectTrackerV2.model_loader import ModelLoader
-from ObjectTrackerV2.utils import get_class_ids_from_names
-from ObjectTrackerV2.object_data import ObjectData
-
+from ObjectTrackerV3.model_loader import ModelLoader
+from ObjectTrackerV3.utils import get_class_ids_from_names
+from ObjectTrackerV3.object_data import ObjectData
+from ObjectTrackerV3.stream_manager import StreamManager
 
 class ObjectTracker:
     def __init__(self, model_path, conf_threshold=0.5, objects_of_interest=None, use_gpu=False):
         """
         Initialize the Object Tracker .
         """
-        self.model= ModelLoader(model_path, use_gpu).load_yolo_model()
-        self.conf_threshold = conf_threshold
+        self.model = ModelLoader(model_path, use_gpu).load_yolo_model()
         self.class_labels = self.model.names
+        self.conf_threshold = conf_threshold
         self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_of_interest)
         self.device = "cuda" if use_gpu else "cpu"
-        # print(self.model.names)
+
+
     def process_tracked_objects(self, detection_results):
         """
         Process detection results and return a list of tracked objects.
@@ -38,6 +39,8 @@ class ObjectTracker:
                 if track_id == -1:
                     continue
 
+                    # Only process expected class IDs
+                # if class_id in self.expected_class_ids: # can be removed
                 tracked_objects.append(ObjectData(
                         track_id=track_id,
                         class_id=class_id,
@@ -59,20 +62,20 @@ class ObjectTracker:
         return self.process_tracked_objects(detection_results)
 
 
-    def process_video(self, input_media_source):
-        """
-        Process a video for object tracking.
-        """
-        video_capture = cv2.VideoCapture(input_media_source)
-        if not video_capture.isOpened():
-            raise ValueError(f"Error: Could not open {input_media_source}")
-
-        while video_capture.isOpened():
-            frame_available, frame = video_capture.read()
-            if not frame_available:
-                break
-            tracked_objects = self.process_frame(frame)
-            yield frame, tracked_objects  # Yield each frame with tracking results pass to line intude later on
-        video_capture.release()
+    # def process_video(self, input_media_source):
+    #     """
+    #     Process a video for object tracking.
+    #     """
+    #     video_capture = cv2.VideoCapture(input_media_source)
+    #     if not video_capture.isOpened():
+    #         raise ValueError(f"Error: Could not open {input_media_source}")
+    #
+    #     while video_capture.isOpened():
+    #         frame_available, frame = video_capture.read()
+    #         if not frame_available:
+    #             break
+    #         tracked_objects = self.process_frame(frame)
+    #         yield frame, tracked_objects  # Yield each frame with tracking results pass to line intude later on
+    #     video_capture.release()
 
         # class instead of video process

@@ -1,20 +1,19 @@
+# Object's Direction of Motion and Speed of Object
 import cv2
-from ObjectTrackerV2.model_loader import ModelLoader
-from ObjectTrackerV2.utils import get_class_ids_from_names
-from ObjectTrackerV2.object_data import ObjectData
+from ObjectCounter.model_loader import ModelLoader
+from ObjectCounter.object_data import ObjectData
+from ObjectCounter.utils import get_class_ids_from_names
 
-
-class ObjectTracker:
+class ObjectCounter:
     def __init__(self, model_path, conf_threshold=0.5, objects_of_interest=None, use_gpu=False):
         """
         Initialize the Object Tracker .
         """
-        self.model= ModelLoader(model_path, use_gpu).load_yolo_model()
+        self.model, self.class_labels = ModelLoader(model_path, use_gpu).load_yolo_model()
         self.conf_threshold = conf_threshold
-        self.class_labels = self.model.names
         self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_of_interest)
         self.device = "cuda" if use_gpu else "cpu"
-        # print(self.model.names)
+
     def process_tracked_objects(self, detection_results):
         """
         Process detection results and return a list of tracked objects.
@@ -38,12 +37,15 @@ class ObjectTracker:
                 if track_id == -1:
                     continue
 
-                tracked_objects.append(ObjectData(
+                    # Only process expected class IDs
+                if class_id in self.expected_class_ids:
+                    tracked_objects.append(ObjectData(
                         track_id=track_id,
                         class_id=class_id,
                         class_label=self.class_labels[class_id],
                         bounding_box=bbox
                     ))
+
         return tracked_objects
 
 
@@ -72,7 +74,5 @@ class ObjectTracker:
             if not frame_available:
                 break
             tracked_objects = self.process_frame(frame)
-            yield frame, tracked_objects  # Yield each frame with tracking results pass to line intude later on
+            yield frame, tracked_objects  # Yield each frame with tracking results
         video_capture.release()
-
-        # class instead of video process

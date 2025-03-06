@@ -1,19 +1,17 @@
 # Object's Direction of Motion and Speed of Object
 import cv2
-from ObjectMotionTracker.model_loader import ModelLoader
-from ObjectMotionTracker.object_data import ObjectData
-from ObjectMotionTracker.utils import get_class_ids_from_names
-from ObjectMotionTracker.motion_zone import *
+from ObjectCounter.model_loader import ModelLoader
+from ObjectCounter.object_data import ObjectData
+from ObjectCounter.utils import get_class_ids_from_names
 
-
-class ObjectMotinTracker:
-    def __init__(self, model_path, conf_threshold=0.5, objects_to_track=None, use_gpu=False):
+class ObjectCounter:
+    def __init__(self, model_path, conf_threshold=0.5, objects_of_interest=None, use_gpu=False):
         """
         Initialize the Object Tracker .
         """
         self.model, self.class_labels = ModelLoader(model_path, use_gpu).load_yolo_model()
         self.conf_threshold = conf_threshold
-        self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_to_track)
+        self.expected_class_ids = get_class_ids_from_names(self.class_labels, objects_of_interest)
         self.device = "cuda" if use_gpu else "cpu"
 
     def process_tracked_objects(self, detection_results):

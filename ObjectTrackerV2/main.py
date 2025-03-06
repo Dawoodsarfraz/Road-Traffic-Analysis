@@ -1,26 +1,24 @@
 import cv2
-from ObjectTrackerV3.object_tracker import ObjectTracker
+from ObjectTrackerV3.object_tracker import ObjectTracker  # Updated to use ObjectTracker
 from ObjectTrackerV3.utils import annotate_frame
-from ObjectTrackerV3.stream_manager import StreamManager
+
 
 def main():
     print("Starting Object Tracking...")
 
     model_path = "Models/Yolov12/weights/yolov12n.pt"
     input_media_source = "./media/videos/222.mp4"
-    # input_media_source = 0  # For webcam
+    input_media_source = 0
 
     # Specify objects to track (None = track all objects)
     objects_of_interest = ["car", "cell phone", "person"]
     conf_threshold = 0.75
     use_gpu = False
-
     tracker = ObjectTracker(model_path, conf_threshold, objects_of_interest, use_gpu)
-    stream_manager = StreamManager(input_media_source, tracker.process_frame)  # Pass only to StreamManager
-    # other way is to pass
+    # tracker = ObjectTracker(model_path, conf_threshold, objects_to_track)
 
-    # Process video using StreamManager
-    for frame, tracked_objects in stream_manager.process_video():
+    # Process video (passing file path directly)
+    for frame, tracked_objects in tracker.process_video(input_media_source):
         annotated_frame = annotate_frame(frame, tracked_objects)
         cv2.imshow("Object Tracking", annotated_frame)
 
@@ -31,3 +29,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    # Line intusion detector use just line co-ordinates
+    # use this class for line intrusion
+    # for easy streamming manager which take streaming source. display stream function, take parameter do we want to display detectionmor or not no need to
+    # call stramming manager link of source
+    # call stream video or show video implement dection true or false
