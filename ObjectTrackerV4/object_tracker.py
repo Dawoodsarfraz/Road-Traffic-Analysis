@@ -1,7 +1,8 @@
 import sys
-from ObjectTrackerV3.model_loader import ModelLoader
-from ObjectTrackerV3.utils import get_class_ids_from_names
-from ObjectTrackerV3.tracked_objects import TrackedObjects
+from ObjectTrackerV4.model_loader import ModelLoader
+from ObjectTrackerV4.utils import get_class_ids_from_names
+from ObjectTrackerV4.tracked_objects import TrackedObjects
+
 
 class ObjectTracker:
     def __init__(self, model_path, conf_threshold=0.5, objects_of_interest=None, use_gpu=False):

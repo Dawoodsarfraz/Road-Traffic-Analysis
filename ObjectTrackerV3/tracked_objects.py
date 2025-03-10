@@ -1,4 +1,4 @@
-class ObjectData:
+class TrackedObjects:
     """Represents a single tracked object."""
     def __init__(self, track_id, class_id, class_label, bounding_box):
         self.track_id = track_id
