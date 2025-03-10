@@ -1,12 +1,27 @@
 import cv2
+from ObjectTrackerV6.object_tracker import ObjectTracker
+from ObjectTrackerV6.utils import annotate_frame
+from ObjectTrackerV6.intrusion_detector import IntrusionDetector
 
 
 class StreamManager:
-    def __init__(self, input_media_source, tracker, intrusion_detector):
+    def __init__(self, input_media_source):
+        """
+        Initialize the StreamManager with all necessary components.
+        """
         self.input_media_source = input_media_source
-        self.tracker = tracker
-        self.intrusion_detector = intrusion_detector
 
+        # Define parameters (moved inside StreamManager)
+        self.model_path = "Models/Yolov12/weights/yolov12n.pt"
+        self.objects_of_interest = ["person", "car"]
+        self.conf_threshold = 0.3
+        self.use_gpu = False
+
+        # Initialize object tracker
+        self.tracker = ObjectTracker(self.model_path, self.conf_threshold, self.objects_of_interest, self.use_gpu)
+
+        # Initialize intrusion detector
+        self.intrusion_detector = IntrusionDetector(use_annotate_frame=True, annotate_frame=annotate_frame)
 
     def process_video(self):
         """
@@ -24,7 +39,7 @@ class StreamManager:
             if not frame_available:
                 break
 
-            # Process frame for object tracking
+            # Perform object tracking
             tracked_objects = self.tracker.process_frame(frame)
 
             # Perform intrusion detection

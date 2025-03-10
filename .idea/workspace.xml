@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/object_tracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/intrusion_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
