@@ -5,33 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV3/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/intrusion_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/model_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/tracked_objects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV4/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/intrusion_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/model_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/tracked_objects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV5/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/intrusion_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/model_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/tracked_objects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV6/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_mouse.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV3/object_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV3/tracked_objects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV3/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV3/object_tracker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV3/zone_intrusion_detector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/object_tracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,7 +1,7 @@
 import sys
-from ObjectTrackerV5.model_loader import ModelLoader
-from ObjectTrackerV5.utils import get_class_ids_from_names
-from ObjectTrackerV5.tracked_objects import TrackedObjects
+from ObjectTrackerV6.model_loader import ModelLoader
+from ObjectTrackerV6.utils import get_class_ids_from_names
+from ObjectTrackerV6.tracked_objects import TrackedObjects
 
 
 class ObjectTracker:
