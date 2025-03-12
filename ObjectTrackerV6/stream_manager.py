@@ -1,7 +1,7 @@
 import cv2
-from ObjectTrackerV6.object_tracker import ObjectTracker
-from ObjectTrackerV6.utils import annotate_frame
-from ObjectTrackerV6.intrusion_detector import IntrusionDetector
+from ObjectTrackerV7.object_tracker import ObjectTracker
+from ObjectTrackerV7.utils import annotate_frame
+from ObjectTrackerV7.zone_intrusion_detector import ZoneIntrusionDetector
 
 
 class StreamManager:
@@ -21,7 +21,8 @@ class StreamManager:
         self.tracker = ObjectTracker(self.model_path, self.conf_threshold, self.objects_of_interest, self.use_gpu)
 
         # Initialize intrusion detector
-        self.intrusion_detector = IntrusionDetector(use_annotate_frame=True, annotate_frame=annotate_frame)
+        self.intrusion_detector = ZoneIntrusionDetector(use_annotate_frame=True, annotate_frame=annotate_frame)
+
 
     def process_video(self):
         """

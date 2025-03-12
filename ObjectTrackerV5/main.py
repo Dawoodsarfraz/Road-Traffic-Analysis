@@ -14,7 +14,7 @@ from ObjectTrackerV5.intrusion_detector import IntrusionDetector  # Import Intru
 def main():
     print("Starting Object Tracking...")
 
-    model_path = "Models/Yolov12/weights/yolov12n.pt"
+    model_path = "../Models/Yolov12/weights/yolov12n.pt"
     # input_media_source = "./media/videos/222.mp4"
     input_media_source = 0  # For webcam
     # input_media_source = 'rtsp://getptz:a10alb8q9jz8jJiD@93.122.231.135:9554/ISAPI/Streaming/channels/102'
