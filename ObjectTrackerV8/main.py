@@ -1,0 +1,19 @@
+from ObjectTrackerV8.stream_manager import StreamManager
+
+
+def main():
+    print("Starting Object Tracking...")
+
+    # input_media_source = "./media/videos/222.mp4"
+    input_media_source = 0  # For webcam
+    # # input_media_source = 'rtsp://getptz:a10alb8q9jz8jJiD@93.122.231.135:9554/ISAPI/Streaming/channels/102'
+
+    starting_points_of_intrusion_line = [(50, 400)]   # List of starting points
+    ending_points_of_intrusion_line = [(1300, 200)]   # List of corresponding end points
+
+    stream_manager = StreamManager(input_media_source, starting_points_of_intrusion_line, ending_points_of_intrusion_line)
+    stream_manager.process_video()
+
+
+if __name__ == "__main__":
+    main()

@@ -5,26 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/model_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/tracked_objects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV7/zone_intrusion_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/intrusion_line_points.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/line_intrusion_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/model_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/tracked_objects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ObjectTrackerV8/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV5/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV5/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/zone_intrusion_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV7/stream_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/tracked_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV7/tracked_objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV7/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/zone_intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV7/zone_intrusion_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/line_intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV8/line_intrusion_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV8/stream_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/tracked_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV8/tracked_objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV8/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,11 +107,11 @@
       <recent name="D:\GitHub" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV5" />
       <recent name="D:\GitHub\Road-Traffic-Analysis" />
+      <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV8" />
+      <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV5" />
       <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV7" />
       <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV3" />
-      <recent name="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV4" />
     </key>
   </component>
   <component name="RunManager" selected="Python.model_loader">
@@ -139,7 +130,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\GitHub\Road-Traffic-Analysis\ObjectTrackerV7\main.py" />
+      <option name="SCRIPT_NAME" value="D:\GitHub\Road-Traffic-Analysis\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

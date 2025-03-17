@@ -1,10 +1,14 @@
 class TrackedObjects:
-    """Represents a single tracked object."""
+    """
+    Represents a single tracked object.
+    """
+
     def __init__(self, track_id, class_id, class_label, bounding_box):
         self.track_id = track_id
         self.class_id = class_id
         self.class_label = class_label
         self.bounding_box = bounding_box
+        self.intrusion_detected = False  # Initialize intrusion_detected
 
 
     def __repr__(self):

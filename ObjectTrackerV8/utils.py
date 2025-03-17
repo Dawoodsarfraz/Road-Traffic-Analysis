@@ -1,24 +1,31 @@
 import cv2
 
 
-def annotate_frame(frame, tracked_objects):
+def display_annotated_frame(frame, tracked_objects, starting_points_of_line=None, ending_points_of_line=None):
     """
-    Draws bounding boxes, labels, and track IDs on the frame for tracked objects.
-    Uses the filtered tracking data from `process_frame`.
+    display_annotated_frame draws intrusion lines and bounding boxes, class label, Tracking ID on the frame.
     """
-    if frame is None:
-        print("Error: Received None frame in annotate_frame")
-        return None
 
+    # Draw intrusion lines (if provided)
+    if starting_points_of_line and ending_points_of_line:
+        for starting_point, ending_point in zip(starting_points_of_line, ending_points_of_line):
+            cv2.line(frame, starting_point, ending_point, (0, 0, 255), 2)  # Red intrusion lines
+
+    # Draw bounding boxes class labels and Tracking_ID
     for obj in tracked_objects:
-        x1, y1, x2, y2 = map(int, obj.bounding_box)  # Access attributes directly
+        bbox = list(map(int, obj.bounding_box))
         class_label = obj.class_label
-        track_id = obj.track_id  # Include tracking ID
+        track_id = obj.track_id
 
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw bounding box
-        label = f"{class_label} [Track ID: {track_id}]"  # Display label with tracking ID
-        cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        if len(bbox) != 4:
+            continue
 
+        color = (0, 0, 255) if obj.intrusion_detected else (0, 255, 0)  # Red if intrusion, Green otherwise
+        cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), color, 2)
+
+        # Display class label and track ID
+        label = f"{class_label} [ID: {track_id}]"
+        cv2.putText(frame, label, (bbox[0], bbox[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
     return frame
 
 

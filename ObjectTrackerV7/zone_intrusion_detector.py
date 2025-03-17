@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from ObjectTrackerV7.utils import annotate_frame
 
 
 class ZoneIntrusionDetector:
@@ -11,8 +10,6 @@ class ZoneIntrusionDetector:
         """
         self.points = []
         self.zone_defined = False
-        self.display_annotated_frame = display_annotated_frame
-        self.annotate_frame = annotate_frame
 
 
     def draw_polygon(self, event, x, y, flags, param): # flags, para can be replaced by *_

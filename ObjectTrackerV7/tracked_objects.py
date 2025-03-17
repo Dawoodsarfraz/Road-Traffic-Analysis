@@ -5,6 +5,7 @@ class TrackedObjects:
         self.class_id = class_id
         self.class_label = class_label
         self.bounding_box = bounding_box
+        self.intrusion_detected = False
 
 
     def __repr__(self):

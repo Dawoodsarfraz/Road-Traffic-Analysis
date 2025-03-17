@@ -1,23 +1,25 @@
 import cv2
 from ObjectTrackerV7.object_tracker import ObjectTracker
-from ObjectTrackerV7.utils import annotate_frame
+from ObjectTrackerV7.utils import display_annotated_frame
 from ObjectTrackerV7.zone_intrusion_detector import ZoneIntrusionDetector
-import ObjectTrackerV7.config as cfg
 
 
 class StreamManager:
-    def __init__(self):
+    def __init__(self, input_media_source):
         """
         Initialize the StreamManager with all necessary components.
         """
-        self.input_media_source = cfg.input_media_source
-
+        self.input_media_source = input_media_source
+        self.model_path = "Models/Yolov12/weights/yolov12n.pt"
+        self.objects_of_interest = ["person", "car"]
+        self.conf_threshold = 0.3
+        self.use_gpu = False
 
         # Initialize object tracker
-        self.tracker = ObjectTracker(cfg.model_path,
-                                     cfg.conf_threshold,
-                                     cfg.objects_of_interest,
-                                     cfg.use_gpu
+        self.tracker = ObjectTracker(self.model_path,
+                                     self.conf_threshold,
+                                     self.objects_of_interest,
+                                     self.use_gpu
                                      )
 
         # Initialize intrusion detector

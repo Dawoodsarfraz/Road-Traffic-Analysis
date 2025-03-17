@@ -1,7 +1,7 @@
 import cv2
 
 
-def annotate_frame(frame, tracked_objects, is_inside_zone):
+def display_annotated_frame(frame, tracked_objects, is_inside_zone):
     """
     Draws bounding boxes, labels, and track IDs on the frame for tracked objects.
     Uses the filtered tracking data from `process_frame`.
