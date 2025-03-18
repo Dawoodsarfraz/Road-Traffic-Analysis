@@ -195,3 +195,10 @@ yolov12x.pt
 *.jpeg
 *.jpg
 *.png
+
+ObjectTracker
+ObjectTrackerV2
+ObjectTrackerV3
+ObjectTrackerV4
+ObjectTrackerV5
+ObjectTrackerV6
