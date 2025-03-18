@@ -1,6 +1,5 @@
 import cv2
 
-
 def display_annotated_frame(frame, tracked_objects, starting_points_of_line=None, ending_points_of_line=None):
     """
     display_annotated_frame draws intrusion lines and bounding boxes, class label, Tracking ID on the frame.
