@@ -1,7 +1,7 @@
 import sys
-from ObjectTrackerV7.model_loader import ModelLoader
-from ObjectTrackerV7.utils import get_class_ids_from_names
-from ObjectTrackerV7.tracked_objects import TrackedObjects
+from LineIntrusionDetector.model_loader import ModelLoader
+from LineIntrusionDetector.utils import get_class_ids_from_names
+from LineIntrusionDetector.tracked_objects import TrackedObjects
 
 
 class ObjectTracker:

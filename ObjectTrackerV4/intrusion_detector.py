@@ -6,7 +6,7 @@ class IntrusionDetector:
     def __init__(self, use_annotate_frame=True, annotate_frame=None):
         """
         :param use_annotate_frame: Boolean flag to enable or disable annotation
-        :param annotate_frame: Function to annotate the frame (from main.py)
+        :param annotate_frame: Function to annotate the frame
         """
         self.points = []
         self.zone_defined = False

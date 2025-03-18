@@ -1,11 +1,11 @@
 import cv2
-from ObjectTrackerV8.object_tracker import ObjectTracker
-from ObjectTrackerV8.line_intrusion_detector import LineIntrusionDetector
-from ObjectTrackerV8.utils import display_annotated_frame
+from SpeedEstimator.object_tracker import ObjectTracker
+from SpeedEstimator.speed_estimator import SpeedEstimator
+from SpeedEstimator.utils import display_annotated_frame
 
 
 class StreamManager:
-    def __init__(self, input_media_source, starting_points_of_intrusion_line, ending_points_of_intrusion_line):
+    def __init__(self, input_media_source):
         """
         Initialize the StreamManager with all necessary components.
         """
@@ -16,15 +16,9 @@ class StreamManager:
         self.use_gpu = False
         self.tracker = ObjectTracker(self.model_path, self.conf_threshold, self.objects_of_interest, self.use_gpu)
 
-        # Store intrusion line points as instance variables
-        self.starting_points_of_intrusion_line = starting_points_of_intrusion_line
-        self.ending_points_of_intrusion_line = ending_points_of_intrusion_line
-
         # Initialize intrusion detector
-        self.line_intrusion_detector = LineIntrusionDetector(
-            self.starting_points_of_intrusion_line,
-            self.ending_points_of_intrusion_line
-        )
+        self.speed_estimator = SpeedEstimator(frames_per_second, pixels_per_meter)
+
 
     def process_video(self):
         """
