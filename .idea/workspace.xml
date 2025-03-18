@@ -5,37 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c1332d6-84e5-43fa-96df-8bc43a390f97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SpeedEstimator/object_tracker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpeedEstimator/speed_estimator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpeedEstimator/stream_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpeedEstimator/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/zone_intrusion_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectMotionTracker/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectMotionTracker/model_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/model_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectMotionTracker/object_counter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectMotionTracker/object_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedEstimator/tracked_objects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectMotionTracker/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV4/intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV4/intrusion_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectTrackerV6/stream_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/model_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/model_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/object_tracker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/stream_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/tracked_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZoneIntrusionDetector/tracked_objects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV7/zone_intrusion_detector.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/intrusion_line_points.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/line_intrusion_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/line_intrusion_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/model_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedEstimator/model_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/object_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/object_tracker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/stream_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/stream_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/tracked_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/tracked_objects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectTrackerV8/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/LineIntrusionDetector/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mouse.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
